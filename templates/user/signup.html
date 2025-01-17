@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message-alert');
+            if (messages.length > 0) {
+                setTimeout(function() {
+                    messages.forEach(function(message) {
+                        message.style.transition = 'opacity 0.5s ease';
+                        message.style.opacity = '0';
+                        setTimeout(function() {
+                            message.style.display = 'none';
+                        }, 500);
+                    });
+                }, 5000);
+            }
+        });
+    </script>
+</head>
+<body class="flex items-center justify-center min-h-screen g-[#faf8f6]">
+    <div class="bg-gradient-to-r from-white to-yellow-50 w-4/5 rounded-lg shadow-lg flex overflow-hidden">
+        <!-- Left Side -->
+        <div class="hidden md:flex w-4/5 text-white flex-col justify-center items-center">
+            <div class="">
+                <img src="{% static 'img/user/loginsignupsideimg.png' %}" alt="login background">
+            </div>
+        </div>
+        
+        <!-- Right Side -->
+        <div class="p-10 w-2/5">
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="message-alert p-4 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h2 class="text-xl font-bold text-center text-gray-700">Sign Up</h2>
+            <form action="/signupmanage/" method="post" class="mt-6">
+                {% csrf_token %}
+                <div class="mt-1">
+                    <label class="block text-gray-700">Name</label>
+                    <input type="text" name="name" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your name" required>
+                </div>
+                <div class="mt-1">
+                    <label class="block text-gray-700">Username</label>
+                    <input type="text" name="username" id="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your username" required>
+                </div>
+                <div class="mt-1">
+                    <label class="block text-gray-700">E-mail</label>
+                    <input type="email" name="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your email" required>
+                </div>
+                <div class="mt-1">
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" name="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your password" required>
+                </div>
+                <div class="mt-1">
+                    <label class="block text-gray-700">Confirm password</label>
+                    <input type="password" name="cpassword" id="cpassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-600">Sign Up</button>
+                <div class="mt-4 text-center">
+                    <a href="/loginpg/" class="text-sm text-gray-600 hover:underline">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

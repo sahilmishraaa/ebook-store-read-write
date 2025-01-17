@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mooli&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        .abc {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-btn {
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    {% block css %} {% endblock %}
+
+</head>
+
+<body class = "abc">
+    <!-- NAV -->
+    <nav class="bg-[#faf8f6] py-4 px-10 flex justify-between items-center mb-0">
+        <div class="text-2xl font-bold logo"><a href="{% url 'home' %}">On.Book</a></div>
+        <ul class="hidden md:flex space-x-6 text-gray-700">
+            <li class="font-semibold border-b-2 border-black pb-1 nav-link">Books</li>
+            <li class="hover:text-black nav-link">Categories</li>
+            <li class="hover:text-black nav-link">Wishlist</li>
+            <li class="hover:text-black nav-link">Blog</li>
+            <li class="hover:text-black nav-link">About Us</li>
+        </ul>
+        <div class="flex items-center space-x-4">
+            <input type="text" placeholder="Search book..."
+                class="border-b bg-[#faf8f6] border-gray-400 focus:outline-none">
+            <span class="text-gray-700">|</span>
+            {% if user.is_authenticated %}
+            <button class="text-gray-700 hover:text-black nav-btn"><a href="{% url 'account' %}">Hello, {{request.user}}</a></button>
+            {% else %}
+            <button class="text-gray-700 hover:text-black nav-btn"><a href="{% url 'loginpg' %}">Sign In</a></button>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+
+   
+
+
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>

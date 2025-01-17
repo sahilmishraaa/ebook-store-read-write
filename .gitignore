@@ -1,0 +1,52 @@
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django-related
+*.log
+*.pot
+*.pyc
+*.pyo
+*.coverage
+*.coverage.*
+*.nox
+*.tox
+*.hypothesis
+*.pytest_cache/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# VS Code editor files
+.vscode/
+
+# Tailwind CSS / Node.js files
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# .env files (for sensitive info, make sure to add it to your .env)
+.env
+
+# Docker (if you ever use it in the future)
+docker/
+Dockerfile
+docker-compose.yml
+
+# Additional miscellaneous files
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# MacOS-specific
+.DS_Store
+
+# Windows-specific
+Thumbs.db
+ehthumbs.db

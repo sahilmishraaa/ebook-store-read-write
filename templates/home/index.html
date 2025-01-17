@@ -1,0 +1,114 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block css%}
+<style>
+.mainhead {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+</style>
+{% endblock %}
+{% block body %}
+<section class="bg-[#faf8f6] flex flex-col md:flex-row items-center justify-between mx-auto py-16">
+    <div class="md:w-1/2 text-center md:text-left pl-5">
+        <h1 class="text-9xl font-bold mainhead">Find Your Next Book</h1>
+        <p class="mt-4 text-gray-600">Our most popular and trending <span class="font-bold">On.Book</span>
+            perfect. Not sure what to read now? Next reading mood Perfectly.</p>
+        <button class="mt-6 bg-black text-white  rounded-md px-7 py-4">Explore Now</button>
+    </div>
+    <div class="md:w-1/2 flex justify-center space-x-4 overflow-x-auto mt-6 md:mt-0">
+        <div class="w-36 flex-shrink-0">
+            <img src="{% static 'img/core/stranger.png' %}" alt="The Stranger"
+                class="w-full h-72 object-cover rounded-t-full">
+            <p class="text-center font-semibold mt-2">The Stranger</p>
+            <p class="text-center text-gray-600">Albert Camus</p>
+        </div>
+        <div class="w-36 flex-shrink-0">
+            <p class="text-center font-semibold mt-2">Der Process</p>
+            <p class="text-center text-gray-600">Franz Kafka</p>
+            <img src="{% static 'img/core/kafka.png' %}" alt="Der Process"
+                class="w-full h-72 object-cover rounded-b-full">
+        </div>
+        <div class="w-36 flex-shrink-0">
+            <img src="{% static 'img/core/dante.png' %}" alt="The Stranger"
+                class="w-full h-72 object-cover rounded-t-full">
+            <p class="text-center font-semibold mt-2">The Stranger</p>
+            <p class="text-center text-gray-600">Albert Camus</p>
+        </div>
+    </div>
+</section>
+
+<br>
+<section>
+    <div class="mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold">Bestsellers</h2>
+            <a href="#" class="text-blue-600 hover:underline">See all</a>
+        </div>
+        <br>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Book 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex justify-center items-center">
+                    <img src="{% static 'img/core/1.jpeg' %}" alt="The Spoke Zarathustra"
+                        class="w-56 h-80 object-cover rounded">
+                </div>
+                <h3 class="mt-4 font-semibold">The Spoke Zarathustra</h3>
+                <p class="text-gray-600">by: Friedrich Nietzsche</p>
+                <p class="text-lg font-bold mt-2">$32.00</p>
+                <div class="flex items-center mt-2">
+                    ⭐⭐⭐⭐☆
+                </div>
+                <button class="mt-4 w-full bg-gray-800 text-white py-2 rounded">Add</button>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex justify-center items-center">
+
+                    <img src="{% static 'img/core/2.jpeg' %}" alt="Confession of a Mask"
+                        class="w-56 h-80 object-cover rounded">
+                </div>
+                <h3 class="mt-4 font-semibold">Confession of a Mask</h3>
+                <p class="text-gray-600">by: Yukio Mishima</p>
+                <p class="text-lg font-bold mt-2">$28.00</p>
+                <div class="flex items-center mt-2">
+                    ⭐⭐⭐⭐☆
+                </div>
+                <button class="mt-4 w-full bg-gray-800 text-white py-2 rounded">Add</button>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex justify-center items-center">
+                    <img src="{% static 'img/core/3.jpg' %}" alt="The Rebel" class="w-56 h-80 object-cover rounded">
+                </div>
+                <h3 class="mt-4 font-semibold">The Rebel</h3>
+                <p class="text-gray-600">by: Albert Camus</p>
+                <p class="text-lg font-bold mt-2">$18.00</p>
+                <div class="flex items-center mt-2">
+                    ⭐⭐⭐⭐☆
+                </div>
+                <button class="mt-4 w-full bg-gray-800 text-white py-2 rounded">Add</button>
+            </div>
+
+            <!-- Book 4 -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex justify-center items-center">
+                    <img src="{% static 'img/core/4.jpg' %}" alt="1984" class="w-56 h-80 object-cover rounded">
+                </div>
+                <h3 class="mt-4 font-semibold">1984</h3>
+                <p class="text-gray-600">by: George Orwell</p>
+                <p class="text-lg font-bold mt-2">$36.00</p>
+                <div class="flex items-center mt-2">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <button class="mt-4 w-full bg-gray-800 text-white py-2 rounded">Add</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

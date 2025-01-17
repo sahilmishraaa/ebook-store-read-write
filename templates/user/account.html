@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Account{% endblock %}
+{% block body %}
+<!-- Add the CSS animation at the top -->
+<style>
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-8px); }
+        75% { transform: translateX(8px); }
+    }
+    .shake {
+        animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+</style>
+
+<section class="max-w-4xl mx-auto p-8">
+    <!-- Add notification div at the top -->
+    <div id="notification" class="hidden fixed top-4 right-4 p-4 rounded-lg shadow-lg text-white max-w-md"></div>
+
+    <div class="flex items-center mb-8">
+        <!-- <img src="/media/account logo.png" class="h-10"> -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="black">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/>
+          </svg>
+        <h2 class="text-3xl font-semibold ml-3">Welcome, {{request.user}}</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Personal Information -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
+            <form id="profileForm" method="POST" action="{% url 'update_profile' %}">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-600">Full Name</label>
+                        <input type="text" name="full_name" value="{{request.user.get_full_name}}" class="w-full p-2 border rounded" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-gray-600">Email</label>
+                        <input type="email" name="email" value="{{request.user.email}}" class="w-full p-2 border rounded" readonly>
+                    </div>
+                    <div id="passwordField" class="hidden">
+                        <label class="block text-gray-600">Enter Password to Confirm Changes</label>
+                        <input type="password" name="password" class="w-full p-2 border rounded transition-colors duration-200">
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="button" id="editButton" class="text-blue-600 hover:underline text-sm">Edit Profile</button>
+                        <button type="submit" id="saveButton" class="hidden text-green-600 hover:underline text-sm">Save Changes</button>
+                        <button type="button" id="cancelButton" class="hidden text-red-600 hover:underline text-sm">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
+            <div class="space-y-4">
+                <a href="/orders/" class="block p-3 border rounded hover:bg-gray-50">
+                    <div class="flex justify-between items-center">
+                        <span>Your Orders</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </a>
+                <a href="#" class="block p-3 border rounded hover:bg-gray-50">
+                    <div class="flex justify-between items-center">
+                        <span>Saved Books</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </a>
+                <a href="#" class="block p-3 border rounded hover:bg-gray-50">
+                    <div class="flex justify-between items-center">
+                        <span>Reading History</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </a>
+                <a href="/logoutmanage/" class="block p-3 bg-red-50 border border-red-100 text-red-600 rounded hover:bg-red-100">
+                    <div class="flex justify-between items-center">
+                        <span>Log Out</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const editButton = document.getElementById('editButton');
+    const saveButton = document.getElementById('saveButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const form = document.getElementById('profileForm');
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"]');
+    const passwordField = document.getElementById('passwordField');
+    const notification = document.getElementById('notification');
+    const originalValues = {};
+
+    // Function to show notification
+    function showNotification(message, isError = false) {
+        notification.textContent = message;
+        notification.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
+        notification.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
+        
+        if (isError) {
+            const passwordInput = passwordField.querySelector('input');
+            passwordInput.classList.add('border-red-500');
+            passwordInput.classList.add('shake');
+            // Remove the shake class after animation completes
+            setTimeout(() => {
+                passwordInput.classList.remove('shake');
+            }, 500);
+            // Reset border color after 3 seconds
+            setTimeout(() => {
+                passwordInput.classList.remove('border-red-500');
+            }, 3000);
+        }
+        
+        // Auto hide after 3 seconds
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 3000);
+    }
+
+    // Store original values
+    inputs.forEach(input => {
+        originalValues[input.name] = input.value;
+    });
+
+    editButton.addEventListener('click', () => {
+        inputs.forEach(input => input.removeAttribute('readonly'));
+        editButton.classList.add('hidden');
+        saveButton.classList.remove('hidden');
+        cancelButton.classList.remove('hidden');
+        passwordField.classList.remove('hidden');
+    });
+
+    cancelButton.addEventListener('click', () => {
+        inputs.forEach(input => {
+            input.value = originalValues[input.name];
+            input.setAttribute('readonly', true);
+        });
+        editButton.classList.remove('hidden');
+        saveButton.classList.add('hidden');
+        cancelButton.classList.add('hidden');
+        passwordField.classList.add('hidden');
+        passwordField.querySelector('input').value = '';
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                inputs.forEach(input => input.setAttribute('readonly', true));
+                editButton.classList.remove('hidden');
+                saveButton.classList.add('hidden');
+                cancelButton.classList.add('hidden');
+                passwordField.classList.add('hidden');
+                passwordField.querySelector('input').value = '';
+                // Update original values
+                inputs.forEach(input => {
+                    originalValues[input.name] = input.value;
+                });
+                showNotification('Profile updated successfully!');
+            } else if (data.error) {
+                showNotification(data.error, true);
+            }
+        });
+    });
+</script>
+{% endblock %}

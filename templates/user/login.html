@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-[#faf8f6]">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message-alert');
+            if (messages.length > 0) {
+                setTimeout(function() {
+                    messages.forEach(function(message) {
+                        message.style.transition = 'opacity 0.5s ease';
+                        message.style.opacity = '0';
+                        setTimeout(function() {
+                            message.style.display = 'none';
+                        }, 500);
+                    });
+                }, 5000);
+            }
+        });
+    </script>
+    <div class="bg-gradient-to-r from-white to-yellow-50 w-4/5 rounded-lg shadow-lg flex overflow-hidden">
+        <!-- Left Side -->
+        <div class="w-4/5">
+            <img src="{% static 'img/user/loginsignupsideimg.png' %}" alt="" class="w-full h-full object-cover">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="p-10 w-2/5 relative top-16">
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="message-alert p-4 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <h2 class="text-xl text-center font-bold">Hey Reader, Login your account</h2>
+            <form class="mt-6" id="loginForm" action="/loginmanage/" method="post">
+                {% csrf_token %}
+                <div>
+                    <label class="block text-gray-700" for="loginusername">Username</label>
+                    <input type="text" id="loginusername" name="loginusername" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your username" required>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-gray-700" for="loginpassword">Password</label>
+                    <input type="password" id="loginpassword" name="loginpassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="mt-8 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-700">Login</button>
+            </form>
+            <div class="mt-4 text-center">
+                <a href="/signup/" class="text-sm text-gray-600 hover:underline">Create Account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
