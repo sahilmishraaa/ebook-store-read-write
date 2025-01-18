@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .abc {
+            width: 80%;
+            margin: 0 auto;
+            padding-left: 40px; 
+            padding-right: 40px;
+        }
+
+        .mainhead {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans abc">
+    <nav class="bg-[#faf8f6] py-4 flex justify-between items-center mb-0">
+        <div class="text-2xl font-bold">On.Book</div>
+        <ul class="hidden md:flex space-x-6 text-gray-700">
+            <li class="font-semibold border-b-2 border-black pb-1">Books</li>
+            <li class="hover:text-black">Categories</li>
+            <li class="hover:text-black">Wishlist</li>
+            <li class="hover:text-black">Blog</li>
+            <li class="hover:text-black">About Us</li>
+        </ul>
+        <div class="flex items-center space-x-4">
+            <input type="text" placeholder="Search book..."
+                class="border-b bg-[#faf8f6] border-gray-400 focus:outline-none">
+            <span class="text-gray-700">|</span>
+            <button class="text-gray-700 hover:text-black"><a href="./loginpage.html">Sign In</a></button>
+        </div>
+    </nav>
+    <header class="text-center py-10">
+        <h2 class="text-lg text-gray-500">Explore your favorite books 📚</h2>
+        <h1 class="text-4xl font-bold text-gray-800">Categories</h1>
+        <a href="#" class="mt-4 inline-block text-black hover:text-[#c4b7a6]">Back To Home</a>
+    </header>
+
+    <section class="flex justify-center mt-8">
+        <div class="relative w-full max-w-lg">
+            <input type="text" placeholder="Search your favorite books..." class="w-full hover:bg-[#faf8f6] px-4 py-3 border border-black rounded-full focus:outline-none focus:ring-2 focus:ring-black">
+            <button class="absolute right-2 top-2 px-4 py-2 bg-black text-[#e6e2d3] rounded-full hover:bg-[#c4b7a6]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8 4a6 6 0 100 12 6 6 0 000-12zM2 8a8 8 0 1114.32 4.906l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387A8 8 0 012 8z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <section class="mt-10 text-center">
+        <div class="flex flex-wrap justify-center gap-4">
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">All</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Art & Crafts</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Biography</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Business & Development</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Children's Books</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Fiction & Fantasy</button>
+            <button class="px-4 py-2 bg-[#faf8f6] text-black rounded-full hover:bg-[#c4b7a6]">Comics</button>
+        </div>
+    </section>
+
+    <section class="mt-10 px-5">
+        <div class="flex flex-wrap  justify-center">
+            <!-- Book Card -->
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="../../static/img/search/1.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Duplicate the book card as needed -->
+
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/6.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of white and shady</h3>
+                    <p class="text-sm text-gray-600">Edmund de waal</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/7.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/2.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/3.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/4.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg mx-3 py-3">
+                <img src="/images/books/search/5.png" alt="Book Cover" class="w-32 relative left-4 h-48 object-cover rounded">
+                <div class="px-2">
+
+                    <h3 class="mt-4 font-semibold text-gray-800">Of White and Shady</h3>
+                    <p class="text-sm text-gray-600">By Peter Venkman</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <span class="text-lg font-bold text-black">$15.00</span>
+                        <div class="flex items-center text-yellow-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.367 4.208a1 1 0 00.95.69h4.516c.969 0 1.371 1.24.588 1.81l-3.656 2.628a1 1 0 00-.364 1.118l1.367 4.207c.3.921-.755 1.688-1.54 1.118l-3.656-2.627a1 1 0 00-1.176 0l-3.656 2.627c-.784.57-1.838-.197-1.539-1.118l1.367-4.207a1 1 0 00-.364-1.118L2.97 9.635c-.784-.57-.38-1.81.588-1.81h4.516a1 1 0 00.95-.69l1.367-4.208z" />
+                            </svg>
+                            <span class="ml-1 text-sm">4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>

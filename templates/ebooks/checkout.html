@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - E-Book Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .abc {
+        width: 80%;
+        margin: 0 auto;
+        padding-left: 40px; 
+        padding-right: 40px;
+    }
+
+    .mainhead {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 700;
+        font-style: normal;
+    }
+</style>
+</head>
+<body class="bg-gray-50 abc">
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">On.Book</div>
+      <a href="/cart" class="text-blue-500 hover:underline">Back to Cart</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Checkout</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Billing Details -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Billing Details</h3>
+        <form action="#" method="POST" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" id="name" name="name" class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="John Doe" required>
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+            <input type="email" id="email" name="email" class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="john@example.com" required>
+          </div>
+          
+          <div>
+            <label for="number" class="block text-sm font-medium text-gray-700">Total Amount</label>
+            <input type="number" id="number" name="number" class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="123456" required>
+          </div>
+        </form>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Order Summary</h3>
+        <ul class="divide-y divide-gray-200">
+          <li class="flex justify-between py-4">
+            <span>E-Book 1</span>
+            <span class="font-semibold">$10.00</span>
+          </li>
+          <li class="flex justify-between py-4">
+            <span>E-Book 2</span>
+            <span class="font-semibold">$15.00</span>
+          </li>
+          <li class="flex justify-between py-4">
+            <span>E-Book 3</span>
+            <span class="font-semibold">$8.00</span>
+          </li>
+          <li class="flex justify-between py-4 text-gray-800 font-semibold">
+            <span>Total</span>
+            <span>$33.00</span>
+          </li>
+        </ul>
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg mt-6 hover:bg-blue-700">Place Order</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t mt-8">
+    <div class="container mx-auto px-4 py-4 text-center text-gray-600">
+      &copy; 2025 E-Book Store. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
