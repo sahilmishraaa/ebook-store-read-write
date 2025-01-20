@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Dashboard</title>
+    <style>
+        body {
+            background-color: #faf8f6;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .option-card {
+            flex: 1;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+        .option-card h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .option-card p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .option-button {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        .option-button:hover {
+            opacity: 0.8;
+        }
+        #publish-form {
+            display: none;
+        }
+        .publish-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 150px;
+        }
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="options-container" id="options-view">
+        <div class="option-card">
+            <h2>Write a Book</h2>
+            <p>Start writing your next masterpiece using our built-in writing tools and editor.</p>
+            <button class="option-button" onclick="window.location.href='/write'">Start Writing</button>
+        </div>
+        <div class="option-card">
+            <h2>Publish a Book</h2>
+            <p>Already have a book ready? Publish it now and share it with readers worldwide.</p>
+            <button class="option-button" onclick="showPublishForm()">Publish Now</button>
+        </div>
+    </div>
+
+    <div id="publish-form" class="publish-form">
+        <h1>Publish Your Book</h1>
+        <form action="/publish" method="POST">
+            <div class="form-group">
+                <label for="title">Book Title*</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Book Description*</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="pages">Number of Pages*</label>
+                <input type="number" id="pages" name="pages" min="1" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Enter the total number of pages in your book</small>
+            </div>
+
+            <div class="form-group">
+                <label for="cover-image">Book Cover Image*</label>
+                <input type="file" id="cover-image" name="cover-image" accept="image/*" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Recommended size: 1600x2400 pixels, JPG/PNG format</small>
+            </div>
+
+            <div class="form-group">
+                <label for="book-file">Book File*</label>
+                <input type="file" id="book-file" name="book-file" accept=".pdf,.epub,.mobi" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Max file size: 100MB. Supported formats: PDF, EPUB, MOBI</small>
+                <div id="file-size" style="margin-top: 5px; font-size: 14px;"></div>
+            </div>
+
+            <script>
+                document.getElementById('book-file').addEventListener('change', function(e) {
+                    const fileSize = (e.target.files[0].size / 1024 / 1024).toFixed(2);
+                    document.getElementById('file-size').textContent = `File size: ${fileSize} MB`;
+                });
+            </script>
+
+            <div class="form-group">
+                <label>Pricing Type*</label>
+                <div style="margin: 10px 0;">
+                    <input type="radio" id="paid" name="pricing-type" value="paid" checked onchange="togglePriceField()">
+                    <label for="paid" style="display: inline;">Paid</label>
+                    
+                    <input type="radio" id="free" name="pricing-type" value="free" style="margin-left: 20px;" onchange="togglePriceField()">
+                    <label for="free" style="display: inline;">Free</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="price-field">
+                <label for="price">Price ($)*</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required>
+            </div>
+
+            <script>
+                function togglePriceField() {
+                    const priceField = document.getElementById('price-field');
+                    const priceInput = document.getElementById('price');
+                    const isPaid = document.getElementById('paid').checked;
+                    
+                    priceField.style.display = isPaid ? 'block' : 'none';
+                    priceInput.required = isPaid;
+                    if (!isPaid) priceInput.value = '0';
+                }
+            </script>
+
+            <div class="form-group">
+                <label for="genre">Genres* (Hold Ctrl/Cmd to select multiple)</label>
+                <select id="genre" name="genre[]" multiple required style="height: 150px;">
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="romance">Romance</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="horror">Horror</option>
+                </select>
+                <div style="margin-top: 10px;">
+                    <label for="custom-genre">Add Custom Genre:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="custom-genre" style="flex: 1;">
+                        <button type="button" onclick="addCustomGenre()" style="width: auto;">Add Genre</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function addCustomGenre() {
+                    const customGenre = document.getElementById('custom-genre').value.trim();
+                    if (customGenre) {
+                        const genreSelect = document.getElementById('genre');
+                        const option = new Option(customGenre, customGenre.toLowerCase());
+                        genreSelect.add(option);
+                        document.getElementById('custom-genre').value = '';
+                        option.selected = true;
+                    }
+                }
+            </script>
+
+            <div class="form-group">
+                <label for="keywords">Keywords (comma separated)*</label>
+                <input type="text" id="keywords" name="keywords" placeholder="e.g., adventure, magic, young adult" required>
+            </div>
+
+            <div class="form-group">
+                <label for="alias">Author Alias (optional)</label>
+                <input type="text" id="alias" name="alias" placeholder="Your pen name (if different from your real name)">
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button type="submit">Publish Book</button>
+                <button type="button">Write a Book</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showPublishForm() {
+            document.getElementById('options-view').style.display = 'none';
+            document.getElementById('publish-form').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- Extra code whose ui is good but not working properly -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Dashboard</title>
+    <style>
+        body {
+            background-color: #faf8f6;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .option-card {
+            flex: 1;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+        .option-card h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .option-card p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .option-button {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        .option-button:hover {
+            opacity: 0.8;
+        }
+        #publish-form {
+            display: none;
+        }
+        .publish-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 150px;
+        }
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="options-container" id="options-view">
+        <div class="option-card">
+            <h2>Write a Book</h2>
+            <p>Start writing your next masterpiece using our built-in writing tools and editor.</p>
+            <button class="option-button" onclick="window.location.href='/write'">Start Writing</button>
+        </div>
+        <div class="option-card">
+            <h2>Publish a Book</h2>
+            <p>Already have a book ready? Publish it now and share it with readers worldwide.</p>
+            <button class="option-button" onclick="showPublishForm()">Publish Now</button>
+        </div>
+    </div>
+
+    <div id="publish-form" class="publish-form">
+        <h1>Publish Your Book</h1>
+        <form action="/publish" method="POST">
+            <div class="form-group">
+                <label for="title">Book Title*</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Book Description*</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="pages">Number of Pages*</label>
+                <input type="number" id="pages" name="pages" min="1" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Enter the total number of pages in your book</small>
+            </div>
+
+            <div class="form-group">
+                <label for="cover-image">Book Cover Image*</label>
+                <input type="file" id="cover-image" name="cover-image" accept="image/*" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Recommended size: 1600x2400 pixels, JPG/PNG format</small>
+            </div>
+
+            <div class="form-group">
+                <label for="book-file">Book File*</label>
+                <input type="file" id="book-file" name="book-file" accept=".pdf,.epub,.mobi" required>
+                <small style="color: #666; display: block; margin-top: 5px;">Max file size: 100MB. Supported formats: PDF, EPUB, MOBI</small>
+                <div id="file-size" style="margin-top: 5px; font-size: 14px;"></div>
+            </div>
+
+            <script>
+                document.getElementById('book-file').addEventListener('change', function(e) {
+                    const fileSize = (e.target.files[0].size / 1024 / 1024).toFixed(2);
+                    document.getElementById('file-size').textContent = `File size: ${fileSize} MB`;
+                });
+            </script>
+
+            <div class="form-group">
+                <label>Pricing Type*</label>
+                <div style="margin: 10px 0;">
+                    <input type="radio" id="paid" name="pricing-type" value="paid" checked onchange="togglePriceField()">
+                    <label for="paid" style="display: inline;">Paid</label>
+                    
+                    <input type="radio" id="free" name="pricing-type" value="free" style="margin-left: 20px;" onchange="togglePriceField()">
+                    <label for="free" style="display: inline;">Free</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="price-field">
+                <label for="price">Price ($)*</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required>
+            </div>
+
+            <script>
+                function togglePriceField() {
+                    const priceField = document.getElementById('price-field');
+                    const priceInput = document.getElementById('price');
+                    const isPaid = document.getElementById('paid').checked;
+                    
+                    priceField.style.display = isPaid ? 'block' : 'none';
+                    priceInput.required = isPaid;
+                    if (!isPaid) priceInput.value = '0';
+                }
+            </script>
+
+            <div class="form-group">
+                <label for="genre">Genres* (Hold Ctrl/Cmd to select multiple)</label>
+                <select id="genre" name="genre[]" multiple required style="height: 150px;">
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="romance">Romance</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="horror">Horror</option>
+                </select>
+                <div style="margin-top: 10px;">
+                    <label for="custom-genre">Add Custom Genre:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="custom-genre" style="flex: 1;">
+                        <button type="button" onclick="addCustomGenre()" style="width: auto;">Add Genre</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function addCustomGenre() {
+                    const customGenre = document.getElementById('custom-genre').value.trim();
+                    if (customGenre) {
+                        const genreSelect = document.getElementById('genre');
+                        const option = new Option(customGenre, customGenre.toLowerCase());
+                        genreSelect.add(option);
+                        document.getElementById('custom-genre').value = '';
+                        option.selected = true;
+                    }
+                }
+            </script>
+
+            <div class="form-group">
+                <label for="keywords">Keywords (comma separated)*</label>
+                <input type="text" id="keywords" name="keywords" placeholder="e.g., adventure, magic, young adult" required>
+            </div>
+
+            <div class="form-group">
+                <label for="alias">Author Alias (optional)</label>
+                <input type="text" id="alias" name="alias" placeholder="Your pen name (if different from your real name)">
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button type="submit">Publish Book</button>
+                <button type="button">Write a Book</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showPublishForm() {
+            document.getElementById('options-view').style.display = 'none';
+            document.getElementById('publish-form').style.display = 'block';
+        }
+    </script>
+</body>
+</html> -->

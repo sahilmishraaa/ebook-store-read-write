@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .abc {
+            width: 80%;
+            margin: 0 auto;
+            padding-left: 40px; 
+            padding-right: 40px;
+        }
+
+        .mainhead {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 abc text-gray-800 font-sans">
+
+    <nav class="bg-[#faf8f6] py-4 flex justify-between items-center mb-0">
+        <div class="text-2xl font-bold">On.Book</div>
+        <ul class="hidden md:flex space-x-6 text-gray-700">
+            <li class="font-semibold border-b-2 border-black pb-1">Books</li>
+            <li class="hover:text-black">Categories</li>
+            <li class="hover:text-black">Wishlist</li>
+            <li class="hover:text-black">Blog</li>
+            <li class="hover:text-black">About Us</li>
+        </ul>
+        <div class="flex items-center space-x-4">
+            <input type="text" placeholder="Search book..."
+                class="border-b bg-[#faf8f6] border-gray-400 focus:outline-none">
+            <span class="text-gray-700">|</span>
+            <button class="text-gray-700 hover:text-black"><a href="./loginpage.html">Sign In</a></button>
+        </div>
+    </nav>
+
+    <section class="flex flex-col items-center justify-center min-h-screen text-center">
+        <div class="p-6 w-[40rem] bg-white shadow-md rounded-lg">
+            <div class="text-3xl mb-4">
+                <img src="https://cdn1.iconfinder.com/data/icons/heroicons-ui/24/shopping-bag-512.png" class="w-10 relative left-[17rem]" alt="">
+            </div>
+            <h1 class="text-4xl font-bold mb-2">Thank you!</h1>
+            <p class="text-gray-600 mb-6">Your order has been purchased<br>Since you're here, Would you like to rate our service?</p>
+
+            <form class="flex items-center justify-center gap-2 mb-4">
+                <input type="email" placeholder="Email Address" class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#c4b7a6]">
+                <button class="px-6 py-2 bg-[#dac292] text-white rounded-full hover:bg-[#c4b7a6]">Post a Review!</button>
+            </form>
+
+            <div class="mt-6">
+                <p class="text-sm text-gray-500">Let’s Be Friends!</p>
+                <div class="flex justify-center gap-4 mt-2">
+                    <a href="#" class="text-gray-800 hover:text-[#c4b7a6]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.833.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.723-.951.564-2.005.974-3.127 1.195a5.468 5.468 0 00-9.325 4.986C7.691 8.094 4.066 6.13 1.64 3.161c-.889 1.527-.443 3.508 1.067 4.516-.806-.026-1.566-.247-2.229-.616v.061c0 2.347 1.67 4.292 3.887 4.735-.407.111-.836.171-1.276.171-.312 0-.615-.03-.916-.086.631 1.953 2.445 3.376 4.604 3.415-1.68 1.316-3.809 2.101-6.102 2.101-.396 0-.788-.023-1.177-.068C2.29 21.29 5.015 22 7.85 22c9.421 0 14.579-7.806 14.579-14.579 0-.222-.005-.443-.015-.663.999-.722 1.865-1.623 2.553-2.652z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-800 hover:text-[#c4b7a6]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24H12.82v-9.293H9.692V10.71h3.127V8.396c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.462.099 2.792.143v3.24l-1.915.001c-1.5 0-1.793.714-1.793 1.762v2.31h3.587l-.467 3.997h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.326V1.326C24 .593 23.407 0 22.675 0z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-800 hover:text-[#c4b7a6]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c-5.514 0-10 4.486-10 10 0 4.41 3.658 8.058 8.412 8.852-.116-.754-.226-1.908.048-2.727.245-.762 1.579-4.846 1.579-4.846s-.403-.807-.403-2c0-1.874 1.088-3.268 2.444-3.268 1.152 0 1.71.865 1.71 1.9 0 1.158-.737 2.891-1.116 4.5-.318 1.346.673 2.442 2.002 2.442 2.402 0 4.227-2.533 4.227-6.185 0-3.23-2.327-5.485-5.648-5.485-3.853 0-6.106 2.888-6.106 5.872 0 1.157.447 2.401 1.007 3.075a.404.404 0 01.093.387c-.102.426-.334 1.346-.38 1.532-.06.247-.194.3-.45.181-1.682-.776-2.735-3.207-2.735-5.166 0-4.198 3.056-8.062 8.812-8.062 4.613 0 8.198 3.29 8.198 7.704 0 4.584-2.892 8.26-6.902 8.26-1.346 0-2.611-.699-3.045-1.493l-.83 3.167c-.302 1.15-1.12 2.587-1.675 3.463C9.144 23.76 10.5 24 12 24c5.514 0 10-4.486 10-10 0-5.514-4.486-10-10-10z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
