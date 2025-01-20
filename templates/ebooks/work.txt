@@ -1,1 +1,0 @@
-Added Checkout, OrderConfirm and Search page and the images are in the static folder.

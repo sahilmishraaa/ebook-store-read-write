@@ -1,0 +1,5 @@
+1- writereview.html: created ui for writing review.
+2- Review.html(View review): created UI for view all reviews for a particular book at templates/reviews and added its static files at static/reviews/ created seperate folder for them css, js
+3- publishbook.html: Created UI for publishing a book and choosing whether to write or publish a book. Extra Code is written in the commented section which can also be used.
+4- writebook.html: Created empty file for further usage.
+5- allbooks.html: Created empty file for further usage.
