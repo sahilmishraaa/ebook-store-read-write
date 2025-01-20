@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviews - [Book Title]</title>
+    <link rel="stylesheet" href="reviews.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Back to Book
+            </button>
+            <h1>Reviews for "The Book Title"</h1>
+            <div class="book-rating">
+                <div class="rating-summary">
+                    <span class="average-rating">4.5</span>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="total-reviews">2,459 reviews</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="sort-options">
+                <select id="sort-reviews">
+                    <option value="recent">Most Recent</option>
+                    <option value="highest">Highest Rated</option>
+                    <option value="lowest">Lowest Rated</option>
+                </select>
+            </div>
+            <div class="star-filters">
+                <button class="star-filter" data-stars="5">5 Stars</button>
+                <button class="star-filter" data-stars="4">4 Stars</button>
+                <button class="star-filter" data-stars="3">3 Stars</button>
+                <button class="star-filter" data-stars="2">2 Stars</button>
+                <button class="star-filter" data-stars="1">1 Star</button>
+            </div>
+        </div>
+
+        <div class="reviews-container">
+            <!-- Review Card Template -->
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+                    <div class="user-info">
+                        <h3>John Doe</h3>
+                        <div class="review-stats">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="review-date">Verified Purchase • July 15, 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>This book was absolutely amazing! The character development was outstanding, and the plot kept me engaged throughout. I couldn't put it down and finished it in one sitting.</p>
+                </div>
+                <div class="review-footer">
+                    <div class="helpful-buttons">
+                        <button class="helpful-btn">
+                            <i class="far fa-thumbs-up"></i>
+                            Helpful (24)
+                        </button>
+                        <button class="not-helpful-btn">
+                            <i class="far fa-thumbs-down"></i>
+                            Not Helpful (2)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- More review cards will be dynamically added -->
+        </div>
+
+        <div class="load-more">
+            <button id="load-more-btn">Load More Reviews</button>
+        </div>
+    </div>
+    <script src="reviews.js"></script>
+</body>
+</html>
